@@ -25,7 +25,7 @@ Make sure composer is install in your dev machine
 composer install
 ```
 
-## Modify Host File
+## Modify Host File and Project File
 Edit your host file to support custom name
 
 ```shell
@@ -36,7 +36,10 @@ Add the entry below in your host file then save
 ```shell
 192.168.10.20   flexisource.com.test
 ```
-
+Duplicate `.env.example` and rename it to `.env`
+```
+mv ~/Desktop/flexisourceExam/.env.example ~/Desktop/flexisourceExam/.env
+```
 ## Vagrant container
 Create your vagrant instance by running vagrant up
 
