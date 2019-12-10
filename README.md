@@ -1,6 +1,15 @@
 # Flexisource Exam
 This is just a simple implementation of retrieving records and saving data using a Cron Job and Scheduler. This implementation is not yet optimize we can further improve this implementation by adding redis to save the records that way all `GET` method will only retrieve all records from the REDIS and if not existing retrieve it in the DB. As for the CronJob all record should be save in DB then in the Redis to make the record consistent.
 
+## System Requirements
+Please make sure this is installed in your local machine
+
+- Vagrant
+- VirtualBox
+- GIT
+- Composer
+- Mysql
+
 ## Create directory
 Select a repository you want to deploy the application
 
