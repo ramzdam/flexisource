@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->job(new RetrievePlayerDetail)->everyMinute();
+        $schedule->job(new RetrievePlayerDetail)->everyMinute()->withoutOverlapping();
         // $schedule->call(function () {
         //     Log::info("Entering here " . date('y-m-d h:i:s'));
         // })->everyMinute();
