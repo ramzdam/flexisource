@@ -36,37 +36,7 @@ class ApiService implements ApiInterface
             return null;
         }
 
-        switch (strtoupper($method)) {
-            case 'GET' :
-
-                $param_data = [
-                    'query' => $params,
-                    'exceptions' => false,
-                    'verify'     => false,
-                    'headers' => [
-                        'User-Agent' => "FLEXISOURCE",
-                        'Accept' => $format,
-                    ]
-                ];
-                break;
-
-            default:
-
-                $param_data = [
-                    'body' => json_encode($params),
-                    'headers' => [
-                        'Content-Type' => 'application/json',
-                        'User-Agent' => $_SERVER['HTTP_USER_AGENT'],
-                        'Accept-Language' => isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : "en-US,en;q=0.8",
-                    ],
-                    'query' => [],
-                    'exceptions' => false,
-                    'verify'     => false,
-
-                ];
-
-                break;
-        }
+        $param_data = $this->getParams($method, $params, $format);
 
         try {            
             $response = $this->client->$method($this->url, $param_data);            
@@ -107,5 +77,42 @@ class ApiService implements ApiInterface
                 'message' => $e->getMessage()
             );
         }
+    }
+
+    private function getParams($method, $params, $format)
+    {
+        switch (strtoupper($method)) {
+            case 'GET' :
+
+                $param_data = [
+                    'query' => $params,
+                    'exceptions' => false,
+                    'verify'     => false,
+                    'headers' => [
+                        'User-Agent' => "FLEXISOURCE",
+                        'Accept' => $format,
+                    ]
+                ];
+
+                return $param_data;                
+
+            default:
+
+                $param_data = [
+                    'body' => json_encode($params),
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'User-Agent' => $_SERVER['HTTP_USER_AGENT'],
+                        'Accept-Language' => isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : "en-US,en;q=0.8",
+                    ],
+                    'query' => [],
+                    'exceptions' => false,
+                    'verify'     => false,
+
+                ];
+
+                return $param_data;                
+        }
+
     }
 }
