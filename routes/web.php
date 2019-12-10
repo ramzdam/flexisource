@@ -14,6 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-Route::get('/', ['as' => 'home', 'uses' => 'Api\HomeController@index']);
